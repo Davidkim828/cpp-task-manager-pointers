@@ -1,0 +1,30 @@
+@startuml
+class Task {
+  - id : int
+  - description : std::string
+  - completed : bool
+  + Task()
+  + Task(id:int, desc:std::string)
+  + markCompleted() : void
+  + markIncomplete() : void
+  + isCompleted() const : bool
+  + getId() const : int
+  + getDescription() const : std::string
+  + setId(newId:int) : void
+  + setDescription(desc:std::string) : void
+}
+
+class TaskManager {
+  - tasks : std::unique_ptr<Task[]>
+  - size : int
+  - capacity : int
+  - nextId : int
+  - resizeIfNeeded() : void
+  + TaskManager(initialCapacity:int)
+  + addTask(desc:std::string) : void
+  + removeTask(id:int) : void
+  + listTasks() const : void
+}
+
+TaskManager *-- Task : owns array
+@enduml
